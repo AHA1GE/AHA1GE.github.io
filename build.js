@@ -93,7 +93,6 @@ function translateMarkdownToHtml(md, css) {
 
   // compose metaData as html meta tags
   let metaHtml = "";
-
   Object.entries(metadata).forEach(([key, value]) => {
     if (key === "title") {
       metaHtml += `<title>${value}</title>`;
@@ -102,20 +101,33 @@ function translateMarkdownToHtml(md, css) {
     }
   });
 
+  // compose header
+  const header = "";
+
   // use marked to translate markdown to html
-  // Disable automatic ID generation
-  marked.setOptions({ headerIds: false });
+  marked.setOptions({ headerIds: false }); // Disable automatic ID generation
   const translatedContent = marked.parse(mdContent);
+
+  // compose footer
+  const footer = "";
 
   // use replace() to replace the content of the markdown with the html
   return mdHtml
     .replace(`<meta id="mdMeta">`, metaHtml)
     .replace(`<style id="mdCss"></style>`, `<style>${mdCss + css}</style>`)
     .replace(
-      `<div id="content"></div>`,
+      `<header id="header"></header>`,
+      `<header id="header">${header}</header>`
+    )
+    .replace(
+      `<main id="content"></main>`,
       `<div id="content">
       ${translatedContent}</div>
       <downloadButton></downloadButton>`
+    )
+    .replace(
+      `<footer id="footer"></footer>`,
+      `<footer id="footer">${footer}</footer>`
     );
 }
 
@@ -169,6 +181,10 @@ async function build() {
     console.log("HTML created: ", htmlFilePath);
     // convert html to pdf
     const pdfFilePath = path.join(publicDir, file.replace(/\.md$/, ".pdf"));
+    const htmlTextTrimed = htmlText.replace(
+      "<downloadButton></downloadButton>",
+      null
+    );
     convertHtmlToPdf(htmlText, pdfFilePath)
       .then(() => {
         console.log(`PDF created: ${pdfFilePath}`);
