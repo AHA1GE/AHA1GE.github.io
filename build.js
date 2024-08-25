@@ -105,7 +105,7 @@ function translateMarkdownToHtml(md, css) {
   // use marked to translate markdown to html
   // Disable automatic ID generation
   marked.setOptions({ headerIds: false });
-  const translatedContent = marked(mdContent);
+  const translatedContent = marked.parse(mdContent);
 
   // use replace() to replace the content of the markdown with the html
   return mdHtml
