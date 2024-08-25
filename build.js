@@ -101,15 +101,24 @@ function translateMarkdownToHtml(md, css) {
     }
   });
 
-  // compose header
-  const header = "";
+  // compose header, record current time, but do not dsplay
+  const header = `
+  <div class="header-container" style="display:none;">
+    <p>作者：${metadata.author}</p>
+    <p>创建时间：${new Date().toLocaleString()}</p>
+  </div>
+  `;
 
   // use marked to translate markdown to html
   marked.setOptions({ headerIds: false }); // Disable automatic ID generation
   const translatedContent = marked.parse(mdContent);
 
-  // compose footer
-  const footer = "";
+  // compose footer, take note:"This page is auto generated from a markdown file", but do not display
+  const footer = `
+  <div class="footer-container" style="display:none;">
+    <p>This page is auto generated from a markdown file</p>
+  </div>
+  `;
 
   // use replace() to replace the content of the markdown with the html
   return mdHtml
@@ -161,8 +170,8 @@ async function build() {
 
     // compose download button html, link point to meta.filename remove .md + .pdf
     const downloadButton = `
-    <div>
-      <a class="button" href="${file.replace(/\.md$/, ".pdf")}">下载</a>
+    <div class="download-button-container">
+      <a class="button" href="${file.replace(/\.md$/, ".pdf")}">下载PDF</a>
     </div>
     `;
 
