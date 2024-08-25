@@ -16,6 +16,10 @@ const publicDir = path.join(__dirname, "public");
 const pagesDir = path.join(srcDir, "pages");
 const pagesTemplateDir = path.join(srcDir, "template");
 
+marked.setOptions({
+  headerIds: false, // Disable automatic ID generation
+});
+
 // all markdown2html shared css
 const mdCss = fs.readFileSync(
   path.join(pagesTemplateDir, "markdown.css"),
@@ -144,7 +148,10 @@ async function build() {
 
     // compose download button html, link point to meta.filename remove .md + .pdf
     const downloadButton = `
-    <a class="button" href="${file.replace(/\.md$/, ".pdf")}">下载</a>`;
+    <div>
+      <a class="button" href="${file.replace(/\.md$/, ".pdf")}">下载</a>
+    </div>
+    `;
 
     // translate markdown to html,
     const htmlText = translateMarkdownToHtml(md, css);
