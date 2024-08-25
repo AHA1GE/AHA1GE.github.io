@@ -35,13 +35,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@latest
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install dependencies
         run: npm install
 
       - name: Build with Node.js
-        run: node src/build.js
+        run: npm build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@latest

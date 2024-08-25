@@ -1,0 +1,25 @@
+{
+  "name": "aha1ge.github.io",
+  "version": "1.0.0",
+  "description": "aha1ge.github.io",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AHA1GE/AHA1GE.github.io.git"
+  },
+  "author": "AHA1GE",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/AHA1GE/AHA1GE.github.io/issues"
+  },
+  "homepage": "https://github.com/AHA1GE/AHA1GE.github.io#readme",
+  "dependencies": {
+    "markd": "^1.2.0",
+    "puppeteer": "^23.1.1",
+    "rimraf": "^6.0.1"
+  }
+}
