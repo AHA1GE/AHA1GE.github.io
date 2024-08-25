@@ -185,7 +185,7 @@ async function build() {
       "<downloadButton></downloadButton>",
       null
     );
-    convertHtmlToPdf(htmlText, pdfFilePath)
+    convertHtmlToPdf(htmlTextTrimed, pdfFilePath)
       .then(() => {
         console.log(`PDF created: ${pdfFilePath}`);
       })
