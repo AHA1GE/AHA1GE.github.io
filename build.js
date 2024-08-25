@@ -16,10 +16,6 @@ const publicDir = path.join(__dirname, "public");
 const pagesDir = path.join(srcDir, "pages");
 const pagesTemplateDir = path.join(srcDir, "template");
 
-marked.setOptions({
-  headerIds: false, // Disable automatic ID generation
-});
-
 // all markdown2html shared css
 const mdCss = fs.readFileSync(
   path.join(pagesTemplateDir, "markdown.css"),
@@ -106,6 +102,11 @@ function translateMarkdownToHtml(md, css) {
     }
   });
 
+  // use marked to translate markdown to html
+  // Disable automatic ID generation
+  marked.setOptions({ headerIds: false });
+  const translatedContent = marked(mdContent);
+
   // use replace() to replace the content of the markdown with the html
   return mdHtml
     .replace(`<meta id="mdMeta">`, metaHtml)
@@ -113,7 +114,7 @@ function translateMarkdownToHtml(md, css) {
     .replace(
       `<div id="content"></div>`,
       `<div id="content">
-      ${marked(mdContent)}</div>
+      ${translatedContent}</div>
       <downloadButton></downloadButton>`
     );
 }
