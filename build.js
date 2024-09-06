@@ -190,10 +190,10 @@ async function build() {
     console.log("HTML created: ", htmlFilePath);
     // convert html to pdf
     const pdfFilePath = path.join(publicDir, file.replace(/\.md$/, ".pdf"));
-    // trim the dl button
+    // trim the dl button, add link to this page
     const htmlTextTrimed = htmlText.replace(
       `<downloadButton></downloadButton>`,
-      ""
+      `<br><br><a href="https://ysun.site/resume">ysun.site/resume</a>`
     );
     convertHtmlToPdf(htmlTextTrimed, pdfFilePath)
       .then(() => {
