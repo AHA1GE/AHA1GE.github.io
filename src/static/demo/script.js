@@ -10,6 +10,7 @@ function startGame() {
     cell.classList.add("clickable");
     cell.style.cursor = "pointer";
     cell.style.backgroundColor = "white";
+    cell.innerHTML = ""; // Clear cell content
   });
 
   countdownInterval = setInterval(() => {
@@ -51,6 +52,7 @@ function resetGame() {
     cell.classList.remove("clickable");
     cell.style.cursor = "not-allowed";
     cell.style.backgroundColor = "gray";
+    cell.innerHTML = "x"; // Mark cell as unclickable
   });
 }
 
