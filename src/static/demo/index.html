@@ -5,7 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grid Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 10px;
+            margin: 0 auto;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: gray;
+            border: 2px solid black;
+            cursor: not-allowed;
+        }
+
+        .cell.clickable {
+            cursor: pointer;
+            background-color: lightblue;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
