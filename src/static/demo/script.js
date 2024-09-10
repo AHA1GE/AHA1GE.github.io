@@ -32,8 +32,15 @@ function endGame() {
   clearInterval(countdownInterval);
   clearInterval(elapsedInterval);
   document.querySelectorAll(".cell").forEach((cell) => {
-    cell.classList.remove("clickable");
-    cell.style.cursor = "not-allowed";
+    if (cell.classList.contains("clickable")) {
+      cell.classList.remove("clickable");
+      cell.style.cursor = "not-allowed";
+      cell.style.backgroundColor = "gray";
+      cell.innerHTML = "";
+    } else {
+      cell.style.cursor = "not-allowed";
+      cell.innerHTML = "";
+    }
   });
 }
 
@@ -52,7 +59,7 @@ function resetGame() {
     cell.classList.remove("clickable");
     cell.style.cursor = "not-allowed";
     cell.style.backgroundColor = "gray";
-    cell.innerHTML = "x"; // Mark cell as unclickable
+    cell.innerHTML = "";
   });
 }
 
