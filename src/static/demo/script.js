@@ -9,6 +9,7 @@ function startGame() {
   document.querySelectorAll(".cell").forEach((cell) => {
     cell.classList.add("clickable");
     cell.style.cursor = "pointer";
+    cell.style.backgroundColor = "white";
   });
 
   countdownInterval = setInterval(() => {
